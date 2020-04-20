@@ -46,7 +46,7 @@ const deleteTransactions = (category_name, callback) => {
 };
 
 const deleteCategory = (category_name, callback) => {
-  deleteTransactions(category_name, (err) => {
+  deleteTransactions(category_name, err => {
     if (err) {
       console.log(err, 'unable to delete multiple transactions');
     } else {
