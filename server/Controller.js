@@ -105,4 +105,34 @@ const updateCategory = (req, res) => {
   });
 };
 
+const deleteTransaction = (req, res) => {
+  Models.deleteTransaction([req.params.transaction_id], err => {
+    if (err) {
+      console.log(err, `unable to delete ${req.params.transaction_id}`);
+    } else {
+      res.status(200).send('transaction deleted');
+    }
+  });
+};
 
+const deleteCategory = (req, res) => {
+  Models.deleteCategory([req.params.category_name], err => {
+    if (err) {
+      console.log(err, `unable to delete ${req.params.category_name}`);
+    } else {
+      res.status(200).send(`${req.params.category_name} deleted`);
+    }
+  });
+};
+
+module.exports = {
+  getSpendingByMonth,
+  getCategories,
+  getTransactions,
+  addTransaction,
+  addCategory,
+  updateProfile,
+  updateCategory,
+  deleteTransaction,
+  deleteCategory,
+};
