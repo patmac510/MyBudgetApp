@@ -66,4 +66,43 @@ const addCategory = (req, res) => {
   });
 };
 
+const updateProfile = (req, res) => {
+  const data = req.body;
+  const params = [
+    data.user,
+    data.user_id,
+    data.income,
+    data.budget,
+    data.spending,
+    data.month,
+    data.year,
+  ];
+  Models.updateProfile(params, err => {
+    if (err) {
+      console.log(err, 'unable to update user profile');
+    } else {
+      res.status(200).send('user profile updated');
+    }
+  });
+};
+
+const updateCategory = (req, res) => {
+  const data = req.body;
+  const params = [
+    data.category_name,
+    data.category_id,
+    data.color,
+    data.user_id,
+    data.total_amount,
+    data.current_amount,
+  ];
+  Models.updateCategory(params, err => {
+    if (err) {
+      console.log(err, 'unable to update category');
+    } else {
+      res.status(200).send('category updated');
+    }
+  });
+};
+
 
