@@ -1,42 +1,42 @@
-DROP DATABASE IF EXISTS budgetApp;
+DROP DATABASE IF EXISTS budgetapp;
 
-CREATE DATABASE budgetApp;
+CREATE DATABASE budgetapp;
 
-\c budgetApp;
+\c budgetapp;
 
 CREATE SCHEMA budget;
 
-CREATE TABLE budget.user (
-  user text,
-  user_id serial,
-  income number,
-  budget number,
-  spending number,
+CREATE TABLE budget.profile (
+  user_name text,
+  user_id serial NOT NULL,
+  income int,
+  budget int,
+  spending int,
   month text,
-  year number,
+  year int,
   PRIMARY KEY (user_id)
 );
 
 CREATE TABLE budget.categories (
   category_name text,
-  category_id serial,
+  category_id serial NOT NULL,
   color text,
-  user_id number,
-  total_amount number,
-  current_amount number,
-  PRIMARY KEY (category_id)
-  FOREIGN KEY (user_id) REFERENCES (budget.user)
+  user_id int,
+  total_amount int,
+  current_amount int,
+  PRIMARY KEY (category_id),
+  FOREIGN KEY (user_id) REFERENCES budget.profile (user_id)
 );
 
 CREATE TABLE budget.transactions (
   transaction_name text,
-  transaction_id serial,
+  transaction_id serial NOT NULL,
   category_name text,
-  amount number,
-  transaction_date number,
-  user_id number,
-  PRIMARY KEY (transaction_id)
-  FOREIGN KEY (user_id) REFERENCES budget.user (user_id)
+  amount int,
+  transaction_date int,
+  user_id int,
+  PRIMARY KEY (transaction_id),
+  FOREIGN KEY (user_id) REFERENCES budget.profile (user_id),
   FOREIGN KEY (category_name) REFERENCES budget.categories (category_name)
 );
 

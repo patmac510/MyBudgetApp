@@ -1,7 +1,7 @@
 const db = require('./index.js');
 
 const getSpendingByMonth = (user_id, callback) => {
-  const query = `SELECT * FROM budget.user WHERE user_id = $1`;
+  const query = `SELECT * FROM budget.profile WHERE user_id = $1`;
   db.query(query, user_id, callback);
 };
 
@@ -26,7 +26,7 @@ const addCategory = (params, callback) => {
 };
 
 const updateProfile = (params, callback) => {
-  const query = `UPDATE budget.user SET user = $1, user_id = $2, income = $3, budget = $4, spending = $5, month = $6, year = $7`;
+  const query = `UPDATE budget.profile SET user_name = $1, user_id = $2, income = $3, budget = $4, spending = $5, month = $6, year = $7`;
   db.query(query, params, callback);
 };
 
