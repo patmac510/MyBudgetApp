@@ -29,3 +29,41 @@ const getTransactions = (req, res) => {
     }
   });
 };
+
+const addTransaction = (req, res) => {
+  const data = req.body;
+  const params = [
+    data.item_name,
+    data.category_name,
+    data.amount,
+    data.transaction_date,
+    data.user_id,
+  ];
+  Models.addTransaction(params, err => {
+    if (err) {
+      console.log(err, 'unable to add transaction');
+    } else {
+      res.status(201).send('transaction posted');
+    }
+  });
+};
+
+const addCategory = (req, res) => {
+  const data = req.body;
+  const params = [
+    data.category_name,
+    data.color,
+    data.user_id,
+    data.total_amount,
+    data.current_amount,
+  ];
+  Models.addCategory(params, err => {
+    if (err) {
+      console.log(err, 'unable to add category');
+    } else {
+      res.status(201).send('category posted');
+    }
+  });
+};
+
+
