@@ -25,7 +25,8 @@ CREATE TABLE budget.categories (
   total_amount int,
   current_amount int,
   PRIMARY KEY (category_id),
-  FOREIGN KEY (user_id) REFERENCES budget.profile (user_id)
+  FOREIGN KEY (user_id) REFERENCES budget.profile (user_id),
+  UNIQUE (category_name)
 );
 
 CREATE TABLE budget.transactions (
@@ -40,4 +41,4 @@ CREATE TABLE budget.transactions (
   FOREIGN KEY (category_name) REFERENCES budget.categories (category_name)
 );
 
-CREATE INDEX category_index ON budget.transaction (category_name);
+CREATE INDEX category_index ON budget.transactions (category_name);
